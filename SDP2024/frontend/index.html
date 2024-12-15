@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <button class="tab-button" onclick="showTab('screen1')">Data Table</button>
+            <button class="tab-button" onclick="showTab('screen2')">Tax Table</button>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content">
+            <!-- Screen 1 -->
+            <!-- Screen 1 -->
+<div id="screen1" class="tab-content">
+    <h2>All Payments</h2>
+    <button onclick="openAddPopup()">Add Record</button>
+    <table id="payments-table" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+                <th>Status</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically populated -->
+        </tbody>
+    </table>
+</div>
+
+
+            <!-- Screen 2 -->
+            <!-- Screen 2 -->
+<div id="screen2" class="tab-content" style="display: none;">
+    <h2>Filter Payments by Due Date</h2>
+    <label for="due-date-filter">Due Date:</label>
+    <select id="due-date-filter" onchange="filterByDueDate()">
+        <option value="">Select Due Date</option>
+    </select>
+    <table id="filtered-payments-table" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+                <th>Status</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filtered data will be dynamically populated -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5"><strong>Total Amount</strong></td>
+                <td id="total-amount">$0.00</td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>Tax Rate:</strong></td>
+                <td>
+                    <input type="number" id="tax-rate" step="0.01" placeholder="Enter Tax Rate" oninput="updatePercentageAndTax()">
+                    <span id="tax-rate-percentage" style="margin-left: 10px;">= 0%</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>Tax Due:</strong></td>
+                <td id="tax-due">$0.00</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+        </div>
+    </div>
+
+<!-- Popup Modal -->
+<div id="popup-modal" style="display: none;">
+    <div class="popup-content">
+        <h3 id="popup-title">Add Payment</h3>
+        <form id="popup-form">
+            <input type="hidden" id="popup-id"> <!-- Hidden field for edit -->
+
+            <!-- Company Field -->
+            <label for="popup-company">Company <span class="required">*</span>:</label>
+            <input type="text" id="popup-company" required oninput="validateForm()"><br>
+
+            <!-- Amount Field -->
+            <label for="popup-amount">Amount <span class="required">*</span>:</label>
+            <input type="number" id="popup-amount" required oninput="validateForm()"><br>
+
+            <!-- Payment Date Field -->
+            <label for="popup-payment-date">Payment Date:</label>
+            <input type="date" id="popup-payment-date" oninput="validateForm()"><br>
+
+            <!-- Status Field -->
+            <label for="popup-status">Status <span class="required">*</span>:</label>
+            <select id="popup-status" required onchange="validateForm()">
+                <option value="">Select Status</option>
+                <option value="paid">Paid</option>
+                <option value="unpaid">Unpaid</option>
+            </select><br>
+
+            <!-- Due Date Field -->
+            <label for="popup-due-date">Due Date <span class="required">*</span>:</label>
+            <select id="popup-due-date" required onchange="validateForm()"></select><br>
+
+            <!-- Save and Cancel Buttons -->
+            <button type="button" id="save-button" onclick="saveRecord()" disabled>Save</button>
+            <button type="button" onclick="closePopup()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="api-service.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

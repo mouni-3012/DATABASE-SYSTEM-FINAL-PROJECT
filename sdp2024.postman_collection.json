@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "b73ad09b-fa13-4b97-8579-53e4446e1544",
+		"name": "sdp2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14389304",
+		"_collection_link": "https://interstellar-robot-560330.postman.co/workspace/New-Team-Workspace~bade7003-4f1d-4e0d-8557-d0bc16362f33/collection/14389304-b73ad09b-fa13-4b97-8579-53e4446e1544?action=share&source=collection_link&creator=14389304"
+	},
+	"item": [
+		{
+			"name": "CREATE PAYMENT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": \"derm\",\n    \"amount\": 4100,\n    \"payment_date\": \"2023-09-26\",\n    \"status\": \"paid\",\n    \"due_date\": \"2024-01-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View All Tax Payment Records",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Tax Payment Record",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": \"derm_updated\",\n    \"amount\": 4500,\n    \"payment_date\": \"2023-09-30\",\n    \"status\": \"unpaid\",\n    \"due_date\": \"2024-01-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Tax Payment Record",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve a payment record with ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments/<id>",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments",
+						"<id>"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
