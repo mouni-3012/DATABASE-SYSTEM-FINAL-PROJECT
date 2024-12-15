@@ -14,29 +14,28 @@ from sql_queries import (
 app = Flask(__name__)
 CORS(app)
 
-# Ensure the backend directory exists
+
 os.makedirs("backend", exist_ok=True)
 
-# Database file path
 db_path = os.path.join("backend", "db.sqlite3")
 
-# Initialize database with raw SQL commands
+
 def init_db():
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(CREATE_TABLE_QUERY)
         conn.commit()
 
-# Initialize database
+
 init_db()
 
-# Home route
+
 @app.route("/")
 def home():
     return jsonify({"message": "Welcome to the Tax Payment Tracker!"})
 
 
-# Add a new tax payment (POST)
+
 @app.route("/payments", methods=["POST"])
 def add_payment():
     data = request.json
@@ -50,7 +49,7 @@ def add_payment():
     return jsonify({"message": "Tax payment record added successfully!"}), 201
 
 
-# View all tax payments (GET)
+
 @app.route("/payments", methods=["GET"])
 def get_payments():
     with sqlite3.connect(db_path) as conn:
@@ -70,7 +69,7 @@ def get_payments():
     return jsonify(payments)
 
 
-# Update a tax payment (PUT)
+
 @app.route("/payments/<int:id>", methods=["PUT"])
 def update_payment(id):
     data = request.json
@@ -84,7 +83,7 @@ def update_payment(id):
     return jsonify({"message": f"Tax payment record with ID {id} updated successfully!"})
 
 
-# Delete a tax payment (DELETE)
+
 @app.route("/payments/<int:id>", methods=["DELETE"])
 def delete_payment(id):
     with sqlite3.connect(db_path) as conn:
@@ -112,6 +111,5 @@ def get_payment_by_id(id):
         else:
             return jsonify({"message": f"Tax payment record with ID {id} not found"}), 404
 
-# Ensure the app runs
 if __name__ == "__main__":
     app.run(debug=True)
