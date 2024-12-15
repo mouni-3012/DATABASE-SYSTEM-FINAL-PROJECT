@@ -1,6 +1,6 @@
 const API_BASE = "http://127.0.0.1:5000";
 
-// API Service using jQuery
+
 const ApiService = {
     // Fetch all payments
     getAllPayments: function () {
@@ -10,7 +10,7 @@ const ApiService = {
         });
     },
 
-    // Fetch payment by ID
+    
     getPaymentById: function (id) {
         return $.ajax({
             url: `${API_BASE}/payments/${id}`,
@@ -18,7 +18,7 @@ const ApiService = {
         });
     },
 
-    // Add a new payment
+    
     addPayment: function (paymentData) {
         return $.ajax({
             url: `${API_BASE}/payments`,
@@ -28,7 +28,7 @@ const ApiService = {
         });
     },
 
-    // Update an existing payment
+    
     updatePayment: function (id, paymentData) {
         return $.ajax({
             url: `${API_BASE}/payments/${id}`,
@@ -38,7 +38,7 @@ const ApiService = {
         });
     },
 
-    // Delete a payment
+    
     deletePayment: function (id) {
         return $.ajax({
             url: `${API_BASE}/payments/${id}`,
