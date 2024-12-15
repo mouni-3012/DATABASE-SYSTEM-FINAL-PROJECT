@@ -1,22 +1,22 @@
-// Show specific tab
+
 function showTab(tabId) {
-    // Hide all tab content
+    
     $('.tab-content').hide();
 
-    // Show the selected tab
+    
     $('#' + tabId).show();
 
-    // Remove active class from all tab buttons
+    
     $('.tab-button').removeClass('active');
 
-    // Add active class to the clicked button
+    
     $(`.tab-button[onclick="showTab('${tabId}')"]`).addClass('active');
 }
 $(document).ready(() => {
     showTab('screen1'); // Show the first tab (screen1)
 });
 
-// Populate the Due Date dropdown for filtering
+
 function populateDueDateFilter() {
     const filterDropdown = $('#due-date-filter');
     const currentYear = new Date().getFullYear();
@@ -36,7 +36,7 @@ function populateDueDateFilter() {
 }
 
 
-// Update percentage text dynamically and calculate tax
+
 function updatePercentageAndTax() {
     const taxRate = parseFloat($('#tax-rate').val());
     const totalAmount = parseFloat($('#total-amount').text().replace('$', ''));
@@ -51,7 +51,7 @@ function updatePercentageAndTax() {
     }
 }
 
-// Calculate the tax due
+
 function calculateTax() {
     const taxRate = parseFloat($('#tax-rate').val()); 
     const totalAmount = parseFloat($('#total-amount').text().replace('$', ''));
@@ -61,24 +61,24 @@ function calculateTax() {
         return;
     }
 
-    // Calculate the tax due
+    
     const taxDue = totalAmount * taxRate;
 
-    // Display the tax due
+    
     $('#tax-due').text(`$${taxDue.toFixed(2)}`);
 }
 
 
 
 
-// Initialize Screen 2 on page load
+
 $(document).ready(() => {
     populateDueDateFilter();
 });
 
 
-// Fetch and populate the table on Screen 1
-// Fetch and populate the table on Screen 1
+
+
 function loadPayments() {
     ApiService.getAllPayments().done((data) => {
         let rows = '';
@@ -100,7 +100,7 @@ function loadPayments() {
             `;
         });
 
-        // Populate the table body
+        
         $('#payments-table tbody').html(rows);
     });
 }
@@ -129,17 +129,17 @@ function filterByDueDate() {
             }
         });
 
-        // Populate the table and update the total amount
+        
         $('#filtered-payments-table tbody').html(rows);
         $('#total-amount').text(`$${totalAmount.toFixed(2)}`);
 
-        // Reset the tax due calculation
+        
         calculateTax();
     });
 }
 
 
-// Populate the Due Date dropdown
+
 function populateDueDateDropdown() {
     const dueDateDropdown = $('#popup-due-date');
     const currentYear = new Date().getFullYear();
@@ -173,7 +173,7 @@ function validateForm() {
 }
 
 
-// Call this function when opening the Add/Edit popup
+
 function openAddPopup() {
     populateDueDateDropdown(); // Populate due date dropdown
     $('#popup-form')[0].reset(); // Reset form fields
@@ -199,7 +199,7 @@ function openEditPopup(id) {
     });
 }
 
-// Confirm delete
+
 function confirmDelete(id) {
     if (confirm('Are you sure you want to delete this record?')) {
         ApiService.deletePayment(id).done(() => {
@@ -209,7 +209,7 @@ function confirmDelete(id) {
     }
 }
 
-// Save Record (Add or Update)
+
 function saveRecord() {
     const id = $('#popup-id').val();
     const paymentData = {
@@ -236,12 +236,12 @@ function saveRecord() {
 }
 
 
-// Close popup
+
 function closePopup() {
     $('#popup-modal').hide();
 }
 
-// Load payments on page load
+
 $(document).ready(() => {
     loadPayments();
 });
