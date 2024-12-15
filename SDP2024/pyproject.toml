@@ -2,7 +2,7 @@
 name = "sdp2024"
 version = "0.1.0"
 description = ""
-authors = ["Divi Gnanesh <gnanesh_divi@srmap.edu.in>"]
+authors = ["MOUNIKA SAI YAGANTI <yagantim1@montclai.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
