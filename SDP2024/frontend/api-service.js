@@ -2,7 +2,7 @@ const API_BASE = "http://127.0.0.1:5000";
 
 
 const ApiService = {
-    // Fetch all payments
+    
     getAllPayments: function () {
         return $.ajax({
             url: `${API_BASE}/payments`,
